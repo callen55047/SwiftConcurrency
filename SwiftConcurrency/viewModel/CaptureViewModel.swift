@@ -10,7 +10,7 @@ import SwiftUI
 class CaptureViewModel: ObservableObject, IFrameCaptureDelegate, IProcessorDelegate {
     let model: CaptureModel
     let camera: CameraDevice
-    lazy var processor = AsyncProcessor()
+    lazy var processor = AsyncProcessor(isSelfie: model.isSelfie)
     
     @Published var title: String = "Setting up..."
     @Published var detections: [DetectionResult] = []
@@ -28,7 +28,7 @@ class CaptureViewModel: ObservableObject, IFrameCaptureDelegate, IProcessorDeleg
     }
     
     func newFrame(image: UIImage) {
-        processor.addImage(image: image)
+        processor.addImage(image: image.cropToSubject())
     }
     
     func onDetection(image: ImagePackage, feedback: DetectionResult) {

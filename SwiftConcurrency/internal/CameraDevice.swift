@@ -51,6 +51,7 @@ class CameraDevice: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
                 previewLayer.session = self.captureSession
                 captureSession.commitConfiguration()
                 setupComplete = true
+                videoDataOutput.connection(with: .video)?.videoOrientation = .portrait
             } catch {
                 fatalError("Could not start camera session: \(error)")
             }

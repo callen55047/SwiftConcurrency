@@ -28,10 +28,15 @@ struct DetectionResult: Equatable {
     }
     
     func formattedString() -> String {
-        return "[\(label)] ---------- \n" +
-        "   Confidence: \(String(format: "%.2f", confidence * 100))% \n" +
-        "   Bounding Box: x=\(Int(boundingBox.origin.x)), y=\(Int(boundingBox.origin.y)) \n" +
-        "   width=\(Int(boundingBox.width)), height=\(Int(boundingBox.height))"
+        var formatted = "[\(label)] ---------- \n" +
+        "   Confidence: \(String(format: "%.2f", confidence * 100))% \n"
+        
+        if (boundingBox != CGRect.zero) {
+            formatted += "   Bounding Box: x=\(Int(boundingBox.origin.x)), y=\(Int(boundingBox.origin.y)) \n" +
+            "   width=\(Int(boundingBox.width)), height=\(Int(boundingBox.height))"
+        }
+        
+        return formatted
     }
     
     static let EMPTY: DetectionResult = .init(label: "", confidence: 0, boundingBox: .zero)

@@ -22,24 +22,20 @@ This SwiftUI project demonstrates real-time object detection using Apple's **Tin
   - `getLatest()` → Retrieves the most recent frame.
 
 ### 3. **FrameAnalyzer.swift**
-- Responsible for running the **YOLOv3 TinyML model** using Apple's `VNCoreMLModel`.
+- Responsible for running the **MobileNetV2 ML model** using Apple's `VNCoreMLModel`.
 - Uses **Vision** framework to analyze image frames for object detection.
-- **Functions:**
-  - `forImage(_:)` → Performs inference on the given image asynchronously.
-  - `parseObservations(_, imageSize:)` → Extracts recognized objects and sorts them by confidence.
-  - `convertBoundingBox(_, imageSize:)` → Converts Vision's bounding box coordinates to the correct image dimensions.
+- Uses VNFaceObservation to detection faces
 
 ## Features
 ✅ **Real-Time Object Detection** – Uses Apple's Vision & CoreML frameworks.  
 ✅ **Multi-Threaded Processing** – Async frame processing to ensure smooth UI.  
-✅ **YOLOv3 Model Integration** – Uses a TinyML model for object detection.  
 ✅ **Swift Concurrency Optimized** – Async/Await ensures high efficiency.  
 ✅ **Live Camera Feed Analysis** – Detects and displays objects in real time.  
 
-## Next Steps
-🔹 Optimize detection performance using a more lightweight ML model.  
-🔹 Add additional UI elements for better visualization of detected objects.  
+## In-Progress
+🔹 Display bounding box information about faces and detected objects.
 🔹 Implement model selection to dynamically load different CoreML models.  
+🔹 Load ML Models at runtime from a hosted server and compile on device. 
 
 This project is designed for **developers looking to implement real-time machine learning** in Swift applications. 🚀
 

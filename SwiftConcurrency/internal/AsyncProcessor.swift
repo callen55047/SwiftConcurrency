@@ -11,7 +11,11 @@ import SwiftUI
 class AsyncProcessor: IAsyncProcessor {
     private let imageFeed = SFlow<ImagePackage>()
     private var currentImage: ImagePackage? = nil
-    private let analyzer = FrameAnalyzer()
+    private let analyzer: FrameAnalyzer
+    
+    init(isSelfie: Bool = false) {
+        analyzer = FrameAnalyzer(withMinimumConfidence: 0.6, withSelfie: isSelfie)
+    }
     
     func start(delegate: IProcessorDelegate) {
         imageFeed.register { image in
